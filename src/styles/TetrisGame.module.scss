@@ -1,0 +1,133 @@
+.tetrisGame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  font-family: 'Courier New', monospace;
+  color: white;
+
+  .gameContainer {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+    align-items: flex-start;
+  }
+
+  .controls {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+
+    h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: #fff;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        padding: 5px 0;
+        text-align: center;
+
+        strong {
+          color: #00f0f0;
+        }
+      }
+    }
+  }
+
+  .gameOverOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+
+    .gameOverMessage {
+      background: #2a2a2a;
+      border-radius: 15px;
+      padding: 40px;
+      text-align: center;
+      border: 2px solid #f00000;
+
+      h2 {
+        color: #f00000;
+        margin-bottom: 20px;
+      }
+
+      p {
+        margin: 10px 0;
+        font-size: 18px;
+      }
+
+      button {
+        background: #f00000;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 20px;
+
+        &:hover {
+          background: #cc0000;
+        }
+      }
+    }
+  }
+
+  .pauseOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+
+    .pauseMessage {
+      background: #2a2a2a;
+      border-radius: 15px;
+      padding: 40px;
+      text-align: center;
+      border: 2px solid #00f0f0;
+
+      h2 {
+        color: #00f0f0;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 18px;
+        margin: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .tetrisGame {
+    .gameContainer {
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+  }
+}
