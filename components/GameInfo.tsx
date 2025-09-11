@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import React from 'react';
-import { TetrominoShape } from '@/types/tetris';
-import styles from './GameInfo.module.scss';
+import React from "react";
+import { TetrominoShape } from "@/types/tetris";
+import styles from "./GameInfo.module.scss";
 
 interface GameInfoProps {
   score: number;
@@ -37,9 +37,11 @@ const GameInfo: React.FC<GameInfoProps> = ({
               {row.map((cell, colIndex) => (
                 <div
                   key={`${rowIndex}-${colIndex}`}
-                  className={`${styles.nextPieceCell} ${cell ? styles.filled : ''}`}
+                  className={`${styles.nextPieceCell} ${
+                    cell ? styles.filled : ""
+                  }`}
                   style={{
-                    backgroundColor: cell ? nextPiece.color : 'transparent',
+                    backgroundColor: cell ? nextPiece.color : "transparent",
                   }}
                 />
               ))}
@@ -54,17 +56,17 @@ const GameInfo: React.FC<GameInfoProps> = ({
     <div className={styles.gameInfo}>
       <div className={styles.statsContainer}>
         <h2>Tetris</h2>
-        
+
         <div className={styles.stat}>
           <span className={styles.label}>Score</span>
           <span className={styles.value}>{score.toLocaleString()}</span>
         </div>
-        
+
         <div className={styles.stat}>
           <span className={styles.label}>Level</span>
           <span className={styles.value}>{level}</span>
         </div>
-        
+
         <div className={styles.stat}>
           <span className={styles.label}>Lines</span>
           <span className={styles.value}>{lines}</span>
@@ -79,13 +81,10 @@ const GameInfo: React.FC<GameInfoProps> = ({
           onClick={onPause}
           disabled={isGameOver}
         >
-          {isPaused ? 'Resume' : 'Pause'}
+          {isPaused ? "Resume" : "Pause"}
         </button>
-        
-        <button
-          className={styles.gameButton}
-          onClick={onRestart}
-        >
+
+        <button className={styles.gameButton} onClick={onRestart}>
           Restart
         </button>
       </div>

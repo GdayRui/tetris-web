@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from "react";
 import {
   createInitialGameState,
   createTetromino,
@@ -12,14 +12,16 @@ import {
   calculateLevel,
   getDropSpeed,
   rotatePiece,
-} from '@/utils/gameLogic';
-import { GameState, Position } from '@/types/tetris';
-import GameBoard from './GameBoard';
-import GameInfo from './GameInfo';
-import styles from './TetrisGame.module.scss';
+} from "@/utils/gameLogic";
+import { GameState, Position } from "@/types/tetris";
+import GameBoard from "./GameBoard";
+import GameInfo from "./GameInfo";
+import styles from "./TetrisGame.module.scss";
 
 const TetrisGame: React.FC = () => {
-  const [gameState, setGameState] = useState<GameState>(createInitialGameState());
+  const [gameState, setGameState] = useState<GameState>(
+    createInitialGameState()
+  );
   const [lastDrop, setLastDrop] = useState(Date.now());
 
   // Initialize first piece
@@ -27,8 +29,8 @@ const TetrisGame: React.FC = () => {
     if (!gameState.currentPiece && gameState.nextPiece) {
       const newPiece = createTetromino(gameState.nextPiece);
       const nextPiece = getRandomTetromino();
-      
-      setGameState(prev => ({
+
+      setGameState((prev) => ({
         ...prev,
         currentPiece: newPiece,
         nextPiece: nextPiece,
@@ -37,7 +39,7 @@ const TetrisGame: React.FC = () => {
   }, [gameState.currentPiece, gameState.nextPiece]);
 
   const movePiece = useCallback((deltaX: number, deltaY: number) => {
-    setGameState(prev => {
+    setGameState((prev) => {
       if (!prev.currentPiece || prev.isGameOver || prev.isPaused) return prev;
 
       const newPosition: Position = {
@@ -65,12 +67,19 @@ const TetrisGame: React.FC = () => {
   }, []);
 
   const rotatePieceClockwise = useCallback(() => {
-    setGameState(prev => {
+    setGameState((prev) => {
       if (!prev.currentPiece || prev.isGameOver || prev.isPaused) return prev;
 
       const rotatedShape = rotatePiece(prev.currentPiece);
-      
-      if (isValidMove(prev.board, prev.currentPiece, prev.currentPiece.position, rotatedShape)) {
+
+      if (
+        isValidMove(
+          prev.board,
+          prev.currentPiece,
+          prev.currentPiece.position,
+          rotatedShape
+        )
+      ) {
         return {
           ...prev,
           currentPiece: {
@@ -89,7 +98,7 @@ const TetrisGame: React.FC = () => {
 
     const newBoard = placePieceOnBoard(state.board, state.currentPiece);
     const { newBoard: clearedBoard, linesCleared } = clearLines(newBoard);
-    
+
     const newLines = state.lines + linesCleared;
     const newLevel = calculateLevel(newLines);
     const newScore = state.score + calculateScore(linesCleared, state.level);
@@ -98,7 +107,11 @@ const TetrisGame: React.FC = () => {
     const newNextPiece = getRandomTetromino();
 
     // Check game over
-    const isGameOver = !isValidMove(clearedBoard, nextPiece, nextPiece.position);
+    const isGameOver = !isValidMove(
+      clearedBoard,
+      nextPiece,
+      nextPiece.position
+    );
 
     return {
       ...state,
@@ -115,7 +128,7 @@ const TetrisGame: React.FC = () => {
   const dropPiece = useCallback(() => {
     const now = Date.now();
     const dropSpeed = getDropSpeed(gameState.level);
-    
+
     if (now - lastDrop > dropSpeed) {
       movePiece(0, 1);
       setLastDrop(now);
@@ -123,11 +136,16 @@ const TetrisGame: React.FC = () => {
   }, [gameState.level, lastDrop, movePiece]);
 
   const hardDrop = useCallback(() => {
-    setGameState(prev => {
+    setGameState((prev) => {
       if (!prev.currentPiece || prev.isGameOver || prev.isPaused) return prev;
 
       let newY = prev.currentPiece.position.y;
-      while (isValidMove(prev.board, prev.currentPiece, { x: prev.currentPiece.position.x, y: newY + 1 })) {
+      while (
+        isValidMove(prev.board, prev.currentPiece, {
+          x: prev.currentPiece.position.x,
+          y: newY + 1,
+        })
+      ) {
         newY++;
       }
 
@@ -144,7 +162,7 @@ const TetrisGame: React.FC = () => {
   }, []);
 
   const pauseGame = useCallback(() => {
-    setGameState(prev => ({
+    setGameState((prev) => ({
       ...prev,
       isPaused: !prev.isPaused,
     }));
@@ -161,33 +179,33 @@ const TetrisGame: React.FC = () => {
       if (gameState.isGameOver) return;
 
       switch (event.key) {
-        case 'ArrowLeft':
+        case "ArrowLeft":
           event.preventDefault();
           movePiece(-1, 0);
           break;
-        case 'ArrowRight':
+        case "ArrowRight":
           event.preventDefault();
           movePiece(1, 0);
           break;
-        case 'ArrowDown':
+        case "ArrowDown":
           event.preventDefault();
           movePiece(0, 1);
           break;
-        case 'ArrowUp':
+        case "ArrowUp":
           event.preventDefault();
           rotatePieceClockwise();
           break;
-        case ' ':
+        case " ":
           event.preventDefault();
           hardDrop();
           break;
-        case 'p':
-        case 'P':
+        case "p":
+        case "P":
           event.preventDefault();
           pauseGame();
           break;
-        case 'r':
-        case 'R':
+        case "r":
+        case "R":
           if (gameState.isGameOver) {
             event.preventDefault();
             restartGame();
@@ -196,9 +214,16 @@ const TetrisGame: React.FC = () => {
       }
     };
 
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [gameState.isGameOver, movePiece, rotatePieceClockwise, hardDrop, pauseGame, restartGame]);
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, [
+    gameState.isGameOver,
+    movePiece,
+    rotatePieceClockwise,
+    hardDrop,
+    pauseGame,
+    restartGame,
+  ]);
 
   // Game loop
   useEffect(() => {
@@ -226,7 +251,7 @@ const TetrisGame: React.FC = () => {
           onPause={pauseGame}
         />
       </div>
-      
+
       {gameState.isGameOver && (
         <div className={styles.gameOverOverlay}>
           <div className={styles.gameOverModal}>
@@ -238,7 +263,7 @@ const TetrisGame: React.FC = () => {
           </div>
         </div>
       )}
-      
+
       <div className={styles.controls}>
         <h3>Controls:</h3>
         <p>← → Move left/right</p>

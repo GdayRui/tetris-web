@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
-import TetrisGame from '@/components/TetrisGame'
+import TetrisGame from "@/components/TetrisGame";
 
 export default function Home() {
   return (
     <main>
       <TetrisGame />
     </main>
-  )
+  );
 }

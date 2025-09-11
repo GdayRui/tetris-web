@@ -25,23 +25,26 @@ A modern, responsive Tetris game built with Next.js, TypeScript, and SCSS. Play 
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <your-repo-url>
 cd tetris-web
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Run the development server:
+
 ```bash
 npm run dev
 ```
@@ -59,7 +62,7 @@ npm start
 
 - **Objective**: Clear horizontal lines by filling them completely with blocks
 - **Line Clearing**: When a horizontal line is completely filled, it disappears and all blocks above fall down
-- **Scoring**: 
+- **Scoring**:
   - 1 line = 40 × (level + 1) points
   - 2 lines = 100 × (level + 1) points
   - 3 lines = 300 × (level + 1) points

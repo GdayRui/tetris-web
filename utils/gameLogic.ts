@@ -7,16 +7,17 @@ import {
   Tetromino,
   Position,
   GameState,
-} from '@/types/tetris';
+} from "@/types/tetris";
 
 export function createEmptyBoard(): string[][] {
   return Array(BOARD_HEIGHT)
     .fill(null)
-    .map(() => Array(BOARD_WIDTH).fill(''));
+    .map(() => Array(BOARD_WIDTH).fill(""));
 }
 
 export function getRandomTetromino(): TetrominoShape {
-  const randomKey = TETROMINO_KEYS[Math.floor(Math.random() * TETROMINO_KEYS.length)];
+  const randomKey =
+    TETROMINO_KEYS[Math.floor(Math.random() * TETROMINO_KEYS.length)];
   return TETROMINO_SHAPES[randomKey];
 }
 
@@ -30,7 +31,7 @@ export function createTetromino(shape: TetrominoShape): Tetromino {
 
 export function rotatePiece(piece: Tetromino): number[][] {
   const rotatedShape = piece.shape[0].map((_, index) =>
-    piece.shape.map(row => row[index]).reverse()
+    piece.shape.map((row) => row[index]).reverse()
   );
   return rotatedShape;
 }
@@ -69,7 +70,7 @@ export function placePieceOnBoard(
   board: string[][],
   piece: Tetromino
 ): string[][] {
-  const newBoard = board.map(row => [...row]);
+  const newBoard = board.map((row) => [...row]);
 
   for (let y = 0; y < piece.shape.length; y++) {
     for (let x = 0; x < piece.shape[y].length; x++) {
@@ -87,13 +88,16 @@ export function placePieceOnBoard(
   return newBoard;
 }
 
-export function clearLines(board: string[][]): { newBoard: string[][]; linesCleared: number } {
-  const newBoard = board.filter(row => row.some(cell => !cell));
+export function clearLines(board: string[][]): {
+  newBoard: string[][];
+  linesCleared: number;
+} {
+  const newBoard = board.filter((row) => row.some((cell) => !cell));
   const linesCleared = BOARD_HEIGHT - newBoard.length;
-  
+
   // Add empty lines at the top
   while (newBoard.length < BOARD_HEIGHT) {
-    newBoard.unshift(Array(BOARD_WIDTH).fill(''));
+    newBoard.unshift(Array(BOARD_WIDTH).fill(""));
   }
 
   return { newBoard, linesCleared };

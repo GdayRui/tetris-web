@@ -35,14 +35,14 @@ export const TETROMINO_SHAPES: { [key: string]: TetrominoShape } = {
       [0, 0, 0, 0],
       [0, 0, 0, 0],
     ],
-    color: '#00f5ff',
+    color: "#00f5ff",
   },
   O: {
     shape: [
       [1, 1],
       [1, 1],
     ],
-    color: '#ffff00',
+    color: "#ffff00",
   },
   T: {
     shape: [
@@ -50,7 +50,7 @@ export const TETROMINO_SHAPES: { [key: string]: TetrominoShape } = {
       [1, 1, 1],
       [0, 0, 0],
     ],
-    color: '#a000f0',
+    color: "#a000f0",
   },
   S: {
     shape: [
@@ -58,7 +58,7 @@ export const TETROMINO_SHAPES: { [key: string]: TetrominoShape } = {
       [1, 1, 0],
       [0, 0, 0],
     ],
-    color: '#00f000',
+    color: "#00f000",
   },
   Z: {
     shape: [
@@ -66,7 +66,7 @@ export const TETROMINO_SHAPES: { [key: string]: TetrominoShape } = {
       [0, 1, 1],
       [0, 0, 0],
     ],
-    color: '#f00000',
+    color: "#f00000",
   },
   J: {
     shape: [
@@ -74,7 +74,7 @@ export const TETROMINO_SHAPES: { [key: string]: TetrominoShape } = {
       [1, 1, 1],
       [0, 0, 0],
     ],
-    color: '#0000f0',
+    color: "#0000f0",
   },
   L: {
     shape: [
@@ -82,7 +82,7 @@ export const TETROMINO_SHAPES: { [key: string]: TetrominoShape } = {
       [1, 1, 1],
       [0, 0, 0],
     ],
-    color: '#ff7000',
+    color: "#ff7000",
   },
 };
 
