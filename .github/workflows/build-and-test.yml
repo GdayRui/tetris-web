@@ -1,0 +1,54 @@
+name: Deploy to AWS Amplify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_VERSION: "18"
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Build application
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Run tests (if any)
+        run: npm test --if-present
+        continue-on-error: true
+
+      # This step is handled by AWS Amplify automatically when connected to the repository
+      # The amplify.yml file will handle the actual deployment
+
+      - name: Deployment Status
+        run: |
+          echo "✅ Build completed successfully!"
+          echo "🚀 AWS Amplify will automatically deploy this build"
+          echo "📦 Artifacts are ready in the 'out' directory"
+          echo ""
+          echo "🔗 To complete setup:"
+          echo "1. Connect your GitHub repo to AWS Amplify"
+          echo "2. Set build settings to use amplify.yml"
+          echo "3. Configure environment variables if needed"

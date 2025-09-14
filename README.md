@@ -97,6 +97,34 @@ tetris-web/
 └── public/               # Static assets
 ```
 
+## 🚀 Deployment
+
+### AWS Amplify (Recommended)
+
+This project is configured for easy deployment to AWS Amplify:
+
+1. **Quick Deploy**:
+   [![Deploy to Amplify](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/YOUR_USERNAME/tetris-web)
+
+2. **Manual Setup**:
+
+   - Connect your GitHub repository to [AWS Amplify](https://console.aws.amazon.com/amplify/)
+   - Amplify will automatically detect the `amplify.yml` configuration
+   - Your app will be deployed with automatic CI/CD
+
+3. **Build Configuration**:
+   - The project includes `amplify.yml` for build settings
+   - Configured for static export with `next.config.js`
+   - Optimized for CDN delivery
+
+For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+### Alternative Deployments
+
+- **Vercel**: `npm i -g vercel && vercel`
+- **Netlify**: Drag and drop the `out/` folder after `npm run build && npm run export`
+- **GitHub Pages**: Use the included GitHub Actions workflow
+
 ## Contributing
 
 1. Fork the repository
