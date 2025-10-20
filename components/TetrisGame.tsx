@@ -101,7 +101,7 @@ const TetrisGame: React.FC = () => {
 
     const newLines = state.lines + linesCleared;
     const newLevel = calculateLevel(newLines);
-    const newScore = state.score + calculateScore(linesCleared, state.level);
+    const newScore = state.score + calculateScore(linesCleared);
 
     const nextPiece = createTetromino(state.nextPiece!);
     const newNextPiece = getRandomTetromino();

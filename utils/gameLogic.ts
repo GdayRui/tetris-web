@@ -103,9 +103,9 @@ export function clearLines(board: string[][]): {
   return { newBoard, linesCleared };
 }
 
-export function calculateScore(lines: number, level: number): number {
-  const baseScores = [0, 40, 100, 300, 1200];
-  return baseScores[lines] * (level + 1);
+export function calculateScore(lines: number): number {
+  const baseScores = [0, 10, 30, 50, 100];
+  return baseScores[lines];
 }
 
 export function calculateLevel(totalLines: number): number {
