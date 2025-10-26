@@ -66,7 +66,7 @@ export const TETROMINO_SHAPES: { [key: string]: TetrominoShape } = {
       [0, 1, 1],
       [0, 0, 0],
     ],
-    color: "#f00000",
+    color: "#f84141ff",
   },
   J: {
     shape: [
@@ -74,7 +74,7 @@ export const TETROMINO_SHAPES: { [key: string]: TetrominoShape } = {
       [1, 1, 1],
       [0, 0, 0],
     ],
-    color: "#0000f0",
+    color: "#5c5cf5ff",
   },
   L: {
     shape: [
@@ -82,7 +82,7 @@ export const TETROMINO_SHAPES: { [key: string]: TetrominoShape } = {
       [1, 1, 1],
       [0, 0, 0],
     ],
-    color: "#ff7000",
+    color: "#febd4cff",
   },
 };
 
